@@ -43,7 +43,7 @@ html(lang=currentLang)
         const selectedLang = this.value;
         const currentUrl = new URL(window.location);
         
-        // Если мы на странице /generate, перенаправляем на главную с языком
+        // If we're on /generate page, redirect to home with language
         if (currentUrl.pathname === '/generate') {
           window.location.href = `/?lang=${selectedLang}`;
         } else {

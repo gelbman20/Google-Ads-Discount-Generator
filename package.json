@@ -1,7 +1,7 @@
 {
   "name": "google-ads-discount-generator",
   "version": "1.0.0",
-  "description": "Node.js проект для генерации ссылок Google Ads со скидками",
+  "description": "Node.js application for generating Google Ads discount links with JWT tokens",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",

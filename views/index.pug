@@ -22,7 +22,7 @@ block content
           code.bg-orange-100.px-2.py-1.rounded.text-sm.font-mono 148415
 
     form(method='POST', action='/generate').space-y-6
-      // Скрытое поле для сохранения языка
+      // Hidden field to preserve language
       input(type='hidden', name='lang', value=currentLang)
       
       .space-y-2
@@ -89,26 +89,26 @@ block content
 
 block scripts
   script.
-    // Простая валидация на клиенте
+    // Simple client-side validation
     document.querySelector('form').addEventListener('submit', function(e) {
       const url = document.getElementById('url').value;
       const price = parseFloat(document.getElementById('price').value);
       const days = parseInt(document.getElementById('days').value);
       
       if (!url.startsWith('http')) {
-        alert('URL должен начинаться с http:// или https://');
+        alert('URL must start with http:// or https://');
         e.preventDefault();
         return;
       }
       
       if (price <= 0) {
-        alert('Цена должна быть положительным числом');
+        alert('Price must be a positive number');
         e.preventDefault();
         return;
       }
       
       if (days < 1 || days > 365) {
-        alert('Количество дней должно быть от 1 до 365');
+        alert('Number of days must be between 1 and 365');
         e.preventDefault();
         return;
       }

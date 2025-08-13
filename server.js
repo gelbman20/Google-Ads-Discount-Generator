@@ -7,9 +7,9 @@ const { createDiscountURL } = require('./index.js');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Настройка i18n
+// i18n configuration
 const localesDir = path.join(__dirname, 'locales');
-console.log(`📁 Путь к локализации: ${localesDir}`);
+console.log(`📁 Localization path: ${localesDir}`);
 
 i18n.configure({
   locales: ['en', 'ru', 'de'],
@@ -22,29 +22,29 @@ i18n.configure({
   updateFiles: false
 });
 
-// Настройка Pug как шаблонизатора
+// Configure Pug as template engine
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-// Cookie parser middleware (нужен для i18n)
+// Cookie parser middleware (required for i18n)
 app.use(cookieParser());
 
 // i18n middleware
 app.use(i18n.init);
 
-// Middleware для обработки форм
+// Middleware for form processing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Middleware для установки языка И глобальных переменных (ПОСЛЕ body parser)
+// Middleware for setting language and global variables (AFTER body parser)
 app.use((req, res, next) => {
-  // Приоритет: body.lang (для POST) > query.lang (для GET)
+  // Priority: body.lang (for POST) > query.lang (for GET)
   const lang = req.body?.lang || req.query.lang;
   if (lang && ['en', 'ru', 'de'].includes(lang)) {
     res.setLocale(lang);
   }
   
-  // Создаем функцию перевода, которая загружает файлы прямо
+  // Create translation function that loads files directly
   res.locals.__ = function(key) {
     try {
       const currentLang = res.getLocale();
@@ -52,7 +52,7 @@ app.use((req, res, next) => {
       const translationFile = path.join(__dirname, 'locales', `${currentLang}.json`);
       const translations = JSON.parse(fs.readFileSync(translationFile, 'utf8'));
       
-      // Поддерживаем вложенные ключи типа 'form.url_label'
+      // Support nested keys like 'form.url_label'
       const keys = key.split('.');
       let result = translations;
       for (const k of keys) {
@@ -67,24 +67,24 @@ app.use((req, res, next) => {
   res.locals.currentLang = res.getLocale();
   res.locals.availableLanguages = [
     { code: 'en', name: 'English' },
-    { code: 'ru', name: 'Русский' },
+    { code: 'ru', name: 'Russian' },
     { code: 'de', name: 'Deutsch' }
   ];
   
   next();
 });
 
-// Статические файлы (CSS, JS, изображения)
+// Static files (CSS, JS, images)
 app.use(express.static('public'));
 
-// Главная страница с формой
+// Main page with form
 app.get('/', (req, res) => {
   res.render('index', {
     title: `🚀 ${res.__('title')}`
   });
 });
 
-// GET маршрут для /generate (перенаправляет на главную с сохранением языка)
+// GET route for /generate (redirects to home preserving language)
 app.get('/generate', (req, res) => {
   const lang = req.query.lang;
   if (lang) {
@@ -94,12 +94,12 @@ app.get('/generate', (req, res) => {
   }
 });
 
-// Обработка генерации ссылки
+// Handle link generation
 app.post('/generate', (req, res) => {
   try {
     const { url, price, days, productId, lang } = req.body;
     
-    // Валидация (язык уже установлен в middleware)
+    // Validation (language already set in middleware)
     if (!url || !price || !days || !productId) {
       throw new Error(res.__('error.validation.all_fields_required'));
     }
@@ -115,15 +115,15 @@ app.post('/generate', (req, res) => {
       throw new Error(res.__('error.validation.days_range'));
     }
     
-    // Валидация Product ID (должен быть числом)
+    // Product ID validation (must be a number)
     if (!/^\d+$/.test(productId)) {
       throw new Error(res.__('error.validation.product_id_invalid'));
     }
     
-    // Генерируем ссылку (скидка = 0%)
+    // Generate link (discount = 0%)
     const generatedLink = createDiscountURL(url, 0, priceNum, daysNum, productId);
     
-    // Рендерим страницу результата
+    // Render result page
     res.render('result', {
       title: `✅ ${res.__('result.title')}`,
       url: url,
@@ -140,15 +140,15 @@ app.post('/generate', (req, res) => {
   }
 });
 
-// Запуск сервера
+// Start server
 app.listen(PORT, () => {
-  console.log('🚀 Сервер запущен!');
+  console.log('🚀 Server started!');
   console.log('=================');
-  console.log(`📱 Откройте в браузере: http://localhost:${PORT}`);
-  console.log('✨ Используйте веб-форму для генерации ссылок');
-  console.log('🔐 Ключи Google загружены автоматически');
+  console.log(`📱 Open in browser: http://localhost:${PORT}`);
+  console.log('✨ Use web form to generate links');
+  console.log('🔐 Google keys loaded automatically');
   console.log('');
-  console.log('💡 Для остановки нажмите Ctrl+C');
+  console.log('💡 Press Ctrl+C to stop');
 });
 
 module.exports = app;

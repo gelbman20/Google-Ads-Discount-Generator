@@ -4,7 +4,7 @@ node_modules/
 # Configuration files with private keys
 config.js
 
-# Google API keys (НЕ добавляйте эти файлы в репозиторий!)
+# Google API keys (DO NOT add these files to repository!)
 *.pem
 google-automated-discounts-dev-private-key.pem
 google-automated-discounts-dev-public-key.pem

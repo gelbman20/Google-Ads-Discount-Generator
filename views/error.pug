@@ -1,7 +1,7 @@
 extends layout
 
 block meta
-  meta(property='og:title', content='Ошибка генерации ссылки')
+  meta(property='og:title', content='Link generation error')
 
 block content
   .card-google.p-8.text-center.animate-slide-up
@@ -27,7 +27,7 @@ block content
 
 block scripts
   script.
-    // Автоматическое перенаправление через 10 секунд
+    // Automatic redirect after 10 seconds
     let countdown = 10;
     const timer = setInterval(() => {
       countdown--;
