@@ -1,0 +1,38 @@
+extends layout
+
+block meta
+  meta(property='og:title', content='Ошибка генерации ссылки')
+
+block content
+  .card-google.p-8.text-center.animate-slide-up
+    .inline-flex.items-center.justify-center.w-16.h-16.bg-red-100.rounded-full.mb-6
+      span.text-2xl.text-red-600 ❌
+    
+    h2.text-3xl.font-bold.text-red-600.mb-4 #{__('error.title')}
+    
+    .bg-red-50.border-l-4.border-red-400.p-6.rounded-lg.mb-8
+      p.text-red-700.text-lg.font-medium= message || __('error.validation.all_fields_required')
+    
+    .space-y-4
+      p.text-gray-600 #{__('messages.check_data')}
+      
+      .flex.flex-col(class="sm:flex-row").gap-4.justify-center
+        a(href='/').btn-google.flex.items-center
+          span.mr-2 ← 
+          | #{__('error.back_button')}
+        
+        button(onclick='window.location.reload()').bg-gray-500(class="hover:bg-gray-600").text-white.font-medium.py-3.px-6.rounded-lg.transition-colors.duration-200.flex.items-center
+          span.mr-2 🔄
+          | #{__('error.refresh')}
+
+block scripts
+  script.
+    // Автоматическое перенаправление через 10 секунд
+    let countdown = 10;
+    const timer = setInterval(() => {
+      countdown--;
+      if (countdown <= 0) {
+        clearInterval(timer);
+        window.location.href = '/';
+      }
+    }, 1000);

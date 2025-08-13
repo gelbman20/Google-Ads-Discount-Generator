@@ -1,0 +1,56 @@
+{
+  "title": "Генератор Google Ads ссылок",
+  "subtitle": "Генератор ссылок с JWT токенами для Google Ads кампаний",
+  "form": {
+    "example_title": "Пример использования:",
+    "url_label": "Полная ссылка на продукт:",
+    "url_placeholder": "https://stage.club-of-wine.de/product-name.html",
+    "price_label": "Цена товара (EUR):",
+    "price_placeholder": "11.25",
+    "days_label": "Срок действия (дней):",
+    "days_placeholder": "30",
+    "product_id_label": "ID товара:",
+    "product_id_placeholder": "148415",
+    "product_id_title": "Только цифры разрешены",
+    "submit_button": "Сгенерировать ссылку"
+  },
+  "result": {
+    "title": "Ссылка успешно сгенерирована!",
+    "subtitle": "JWT токен создан с использованием ваших Google ключей",
+    "original_link": "Исходная ссылка",
+    "price": "Цена",
+    "validity": "Срок действия",
+    "product_id": "ID товара",
+    "days": "дней",
+    "generated_link_title": "Готовая ссылка с JWT токеном:",
+    "copy_button": "Скопировать",
+    "copied": "Скопировано!",
+    "create_new": "Создать новую ссылку",
+    "share": "Поделиться",
+    "share_title": "Google Ads ссылка со скидкой",
+    "share_text": "Сгенерированная ссылка с JWT токеном",
+    "link_copied": "Ссылка скопирована в буфер обмена!"
+  },
+  "error": {
+    "title": "Произошла ошибка",
+    "back_button": "Назад к форме",
+    "refresh": "Обновить страницу",
+    "validation": {
+      "all_fields_required": "Все поля обязательны для заполнения",
+      "price_positive": "Цена должна быть положительным числом",
+      "days_range": "Количество дней должно быть от 1 до 365",
+      "product_id_invalid": "ID товара должен содержать только цифры"
+    }
+  },
+  "footer": "Сделано с ❤️ используя Node.js, Express, Pug и Tailwind CSS",
+  "language": {
+    "current": "Русский",
+    "switch_to": "Переключить на"
+  },
+  "messages": {
+    "check_data": "Пожалуйста, проверьте введенные данные и попробуйте снова.",
+    "url_format": "URL должен начинаться с http:// или https://",
+    "price_format": "Цена должна быть положительным числом",
+    "days_format": "Количество дней должно быть от 1 до 365"
+  }
+}

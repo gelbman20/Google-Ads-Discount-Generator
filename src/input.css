@@ -1,0 +1,71 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Custom components */
+@layer components {
+  .btn-google {
+    @apply bg-gradient-to-r from-google-blue to-google-green text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-google-blue focus:ring-opacity-50;
+  }
+  
+  .input-google {
+    @apply w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-google-blue focus:ring-4 focus:ring-google-blue focus:ring-opacity-20 transition-all duration-200 outline-none;
+  }
+  
+  .card-google {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-google-blue via-google-green to-google-blue bg-clip-text text-transparent;
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  .animate-bounce-in {
+    animation: bounceIn 0.6s ease-out;
+  }
+  
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+/* Additional styling */
+body {
+  font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.copy-success {
+  animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}

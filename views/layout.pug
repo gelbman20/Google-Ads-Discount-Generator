@@ -1,0 +1,47 @@
+doctype html
+html(lang=currentLang)
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title || 'Google Ads Link Generator'
+    link(rel='stylesheet', href='/style.css')
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    block meta
+  body.min-h-screen.gradient-bg.font-google
+    .container.mx-auto.px-4.py-8.max-w-4xl
+      // Language switcher
+      .flex.justify-end.mb-4
+        .relative.inline-block.text-left
+          select#languageSelect.bg-white.border-2.border-gray-300.rounded-lg.px-3.py-2.text-sm(class="focus:border-google-blue focus:outline-none").cursor-pointer
+            each lang in availableLanguages
+              option(value=lang.code selected=(lang.code === currentLang))= lang.name
+
+      header.text-center.mb-8
+        h1.text-4xl(class="md:text-5xl").font-bold.text-gradient.mb-4.animate-fade-in
+          | 🚀 #{__('title')}
+        p.text-lg.text-gray-600.animate-slide-up
+          | #{__('subtitle')}
+      
+      main.animate-slide-up
+        block content
+      
+      footer.mt-16.text-center.text-gray-500.text-sm
+        p #{__('footer')}
+    
+    block scripts
+    
+    // Language switcher script
+    script.
+      document.getElementById('languageSelect').addEventListener('change', function() {
+        const selectedLang = this.value;
+        const currentUrl = new URL(window.location);
+        
+        // Если мы на странице /generate, перенаправляем на главную с языком
+        if (currentUrl.pathname === '/generate') {
+          window.location.href = `/?lang=${selectedLang}`;
+        } else {
+          currentUrl.searchParams.set('lang', selectedLang);
+          window.location.href = currentUrl.toString();
+        }
+      });

@@ -1,0 +1,56 @@
+{
+  "title": "Google Ads Link Generator",
+  "subtitle": "JWT token link generator for Google Ads campaigns",
+  "form": {
+    "example_title": "Usage Example:",
+    "url_label": "Full product link:",
+    "url_placeholder": "https://stage.club-of-wine.de/product-name.html",
+    "price_label": "Product price (EUR):",
+    "price_placeholder": "11.25",
+    "days_label": "Validity period (days):",
+    "days_placeholder": "30",
+    "product_id_label": "Product ID:",
+    "product_id_placeholder": "148415",
+    "product_id_title": "Only numbers allowed",
+    "submit_button": "Generate Link"
+  },
+  "result": {
+    "title": "Link Successfully Generated!",
+    "subtitle": "JWT token created using your Google keys",
+    "original_link": "Original Link",
+    "price": "Price",
+    "validity": "Validity Period",
+    "product_id": "Product ID",
+    "days": "days",
+    "generated_link_title": "Ready link with JWT token:",
+    "copy_button": "Copy",
+    "copied": "Copied!",
+    "create_new": "Create New Link",
+    "share": "Share",
+    "share_title": "Google Ads link with discount",
+    "share_text": "Generated link with JWT token",
+    "link_copied": "Link copied to clipboard!"
+  },
+  "error": {
+    "title": "An Error Occurred",
+    "back_button": "Back to Form",
+    "refresh": "Refresh Page",
+    "validation": {
+      "all_fields_required": "All fields are required",
+      "price_positive": "Price must be a positive number",
+      "days_range": "Number of days must be between 1 and 365",
+      "product_id_invalid": "Product ID must contain only numbers"
+    }
+  },
+  "footer": "Made with ❤️ using Node.js, Express, Pug & Tailwind CSS",
+  "language": {
+    "current": "English",
+    "switch_to": "Switch to"
+  },
+  "messages": {
+    "check_data": "Please check the entered data and try again.",
+    "url_format": "URL must start with http:// or https://",
+    "price_format": "Price must be a positive number",
+    "days_format": "Number of days must be between 1 and 365"
+  }
+}

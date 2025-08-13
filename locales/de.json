@@ -1,0 +1,56 @@
+{
+  "title": "Google Ads Link Generator",
+  "subtitle": "JWT-Token-Link-Generator für Google Ads-Kampagnen",
+  "form": {
+    "example_title": "Verwendungsbeispiel:",
+    "url_label": "Vollständiger Produktlink:",
+    "url_placeholder": "https://stage.club-of-wine.de/product-name.html",
+    "price_label": "Produktpreis (EUR):",
+    "price_placeholder": "11.25",
+    "days_label": "Gültigkeitsdauer (Tage):",
+    "days_placeholder": "30",
+    "product_id_label": "Produkt-ID:",
+    "product_id_placeholder": "148415",
+    "product_id_title": "Nur Zahlen erlaubt",
+    "submit_button": "Link Generieren"
+  },
+  "result": {
+    "title": "Link erfolgreich generiert!",
+    "subtitle": "JWT-Token mit Ihren Google-Schlüsseln erstellt",
+    "original_link": "Original-Link",
+    "price": "Preis",
+    "validity": "Gültigkeitsdauer",
+    "product_id": "Produkt-ID",
+    "days": "Tage",
+    "generated_link_title": "Fertiger Link mit JWT-Token:",
+    "copy_button": "Kopieren",
+    "copied": "Kopiert!",
+    "create_new": "Neuen Link erstellen",
+    "share": "Teilen",
+    "share_title": "Google Ads Link mit Rabatt",
+    "share_text": "Generierter Link mit JWT Token",
+    "link_copied": "Link in die Zwischenablage kopiert!"
+  },
+  "error": {
+    "title": "Ein Fehler ist aufgetreten",
+    "back_button": "Zurück zum Formular",
+    "refresh": "Seite aktualisieren",
+    "validation": {
+      "all_fields_required": "Alle Felder sind Pflichtfelder",
+      "price_positive": "Der Preis muss eine positive Zahl sein",
+      "days_range": "Die Anzahl der Tage muss zwischen 1 und 365 liegen",
+      "product_id_invalid": "Produkt-ID darf nur Zahlen enthalten"
+    }
+  },
+  "footer": "Erstellt mit ❤️ mit Node.js, Express, Pug & Tailwind CSS",
+  "language": {
+    "current": "Deutsch",
+    "switch_to": "Wechseln zu"
+  },
+  "messages": {
+    "check_data": "Bitte überprüfen Sie die eingegebenen Daten und versuchen Sie es erneut.",
+    "url_format": "URL muss mit http:// oder https:// beginnen",
+    "price_format": "Der Preis muss eine positive Zahl sein",
+    "days_format": "Die Anzahl der Tage muss zwischen 1 und 365 liegen"
+  }
+}

@@ -1,0 +1,115 @@
+extends layout
+
+block content
+  .card-google.p-8.mb-8
+    .bg-gradient-to-r.from-blue-50.to-indigo-50.p-6.rounded-lg.mb-6.border-l-4.border-google-blue
+      h3.text-xl.font-semibold.text-google-blue.mb-3.flex.items-center
+        span.mr-2 📝
+        | #{__('form.example_title')}
+      .space-y-2.text-gray-700
+        p
+          strong.text-gray-900 URL: 
+          code.bg-blue-100.px-2.py-1.rounded.text-sm.font-mono 
+            | https://stage.club-of-wine.de/product-name.html
+        p
+          strong.text-gray-900 #{__('result.price')}: 
+          code.bg-green-100.px-2.py-1.rounded.text-sm.font-mono 11.25
+        p
+          strong.text-gray-900 #{__('result.days')}: 
+          code.bg-purple-100.px-2.py-1.rounded.text-sm.font-mono 30
+        p
+          strong.text-gray-900 #{__('result.product_id')}: 
+          code.bg-orange-100.px-2.py-1.rounded.text-sm.font-mono 148415
+
+    form(method='POST', action='/generate').space-y-6
+      // Скрытое поле для сохранения языка
+      input(type='hidden', name='lang', value=currentLang)
+      
+      .space-y-2
+        label(for='url').block.text-lg.font-semibold.text-gray-800.flex.items-center
+          span.mr-2 🔗
+          | #{__('form.url_label')}
+        input(
+          type='url'
+          id='url'
+          name='url'
+          placeholder=__('form.url_placeholder')
+          value='https://stage.club-of-wine.de/geldermann-carte-blanche-gp-148415.html'
+          required
+        ).input-google
+      
+      .grid(class="md:grid-cols-3").gap-6
+        .space-y-2
+          label(for='price').block.text-lg.font-semibold.text-gray-800.flex.items-center
+            span.mr-2 💰
+            | #{__('form.price_label')}
+          input(
+            type='number'
+            id='price'
+            name='price'
+            step='0.01'
+            placeholder=__('form.price_placeholder')
+            value='11.25'
+            required
+          ).input-google
+        
+        .space-y-2
+          label(for='days').block.text-lg.font-semibold.text-gray-800.flex.items-center
+            span.mr-2 ⏰
+            | #{__('form.days_label')}
+          input(
+            type='number'
+            id='days'
+            name='days'
+            placeholder=__('form.days_placeholder')
+            value='30'
+            min='1'
+            max='365'
+            required
+          ).input-google
+        
+        .space-y-2
+          label(for='productId').block.text-lg.font-semibold.text-gray-800.flex.items-center
+            span.mr-2 🏷️
+            | #{__('form.product_id_label')}
+          input(
+            type='text'
+            id='productId'
+            name='productId'
+            placeholder=__('form.product_id_placeholder')
+            value='148415'
+            required
+            pattern='[0-9]+'
+            title=__('form.product_id_title')
+          ).input-google
+      
+      button(type='submit').btn-google.w-full.text-lg.py-4.flex.items-center.justify-center
+        span.mr-2 ✨
+        | #{__('form.submit_button')}
+
+block scripts
+  script.
+    // Простая валидация на клиенте
+    document.querySelector('form').addEventListener('submit', function(e) {
+      const url = document.getElementById('url').value;
+      const price = parseFloat(document.getElementById('price').value);
+      const days = parseInt(document.getElementById('days').value);
+      
+      if (!url.startsWith('http')) {
+        alert('URL должен начинаться с http:// или https://');
+        e.preventDefault();
+        return;
+      }
+      
+      if (price <= 0) {
+        alert('Цена должна быть положительным числом');
+        e.preventDefault();
+        return;
+      }
+      
+      if (days < 1 || days > 365) {
+        alert('Количество дней должно быть от 1 до 365');
+        e.preventDefault();
+        return;
+      }
+    });
